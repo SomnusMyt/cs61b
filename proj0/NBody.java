@@ -5,11 +5,11 @@ public class NBody {
 		double radius = in.readDouble();
 		return radius;
 	}
-	public static Body[] readBodies(String s){
+	public static Planet[] readPlanets(String s){
 		In in = new In(s);
 		int num = in.readInt();
 		double radius = in.readDouble();
-		Body[] bodies = new Body[num];
+		Planet[] bodies = new Planet[num];
 		for(int i=0;i<num;i++){
 			double xxPos = in.readDouble();
 			double yyPos = in.readDouble();
@@ -18,7 +18,7 @@ public class NBody {
 			double mass = in.readDouble();
 			String imgFileName = in.readString();
 			//imgFileName = "./images/" + imgFileName;
-			Body b = new Body(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);			
+			Planet b = new Planet(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);			
 			bodies[i] = b;
 		}
 		return bodies;
@@ -36,7 +36,7 @@ public class NBody {
 		StdDraw.setScale(-radius,radius);
 		StdDraw.clear();
 		StdDraw.picture(0, 0, imageToDraw);
-		Body[] bodies = readBodies(filename);
+		Planet[] bodies = readPlanets(filename);
 		for(int i=0;i<bodies.length;i++)
 			bodies[i].draw();
 		StdDraw.show();
