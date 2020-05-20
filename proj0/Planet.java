@@ -1,7 +1,7 @@
 /**
- * Body
+ * Planet
  */
-public class Body {
+public class Planet {
 
     /** 
      * Its current x position  
@@ -29,11 +29,11 @@ public class Body {
     public double mass;
 
     /** 
-     * The name of the file that corresponds to the image that depicts the body (for example, jupiter.gif) 
+     * The name of the file that corresponds to the image that depicts the Planet (for example, jupiter.gif) 
      */
     public String imgFileName;
 
-    public Body(double xP, double yP, double xV, double yV, double m, String img) {
+    public Planet(double xP, double yP, double xV, double yV, double m, String img) {
         xxPos = xP;
         yyPos = yP;
         xxVel = xV;
@@ -42,7 +42,7 @@ public class Body {
         imgFileName = img;
     }
 
-    public Body(Body b) {
+    public Planet(Planet b) {
         xxPos = b.xxPos;
         yyPos = b.yyPos;
         xxVel = b.xxVel;
@@ -52,9 +52,9 @@ public class Body {
     }
 
     /** 
-     * Calculate the distance between two Bodys 
+     * Calculate the distance between two Planets 
      */
-    public double calcDistance(Body b) {
+    public double calcDistance(Planet b) {
         double dx = this.xxPos - b.xxPos;
         double dy = this.yyPos - b.yyPos;
         double r = Math.hypot(dx, dy);
@@ -62,9 +62,9 @@ public class Body {
     }
 
     /** 
-     * Calculate the force exerted on this body by the given body 
+     * Calculate the force exerted on this Planet by the given Planet 
      */
-    public double calcForceExertedBy(Body b) {
+    public double calcForceExertedBy(Planet b) {
         double G = 6.67e-11;
         double F = (G * this.mass * b.mass) / Math.pow(this.calcDistance(b), 2);
         return F; 
@@ -73,12 +73,12 @@ public class Body {
     /** 
      * Calculate the force in x direction and y direction 
      */
-    public double calcForceExertedByX(Body b) {
+    public double calcForceExertedByX(Planet b) {
         double Fx = this.calcForceExertedBy(b) * (b.xxPos - this.xxPos) / this.calcDistance(b);
         return Fx;
     }
 
-    public double calcForceExertedByY(Body b) {
+    public double calcForceExertedByY(Planet b) {
         double Fy = this.calcForceExertedBy(b) * (b.yyPos - this.yyPos) / this.calcDistance(b);
         return Fy;
     }    
@@ -86,9 +86,9 @@ public class Body {
     /** 
      * Calcualte the net force in x direction and y direction 
      */
-    public double calcNetForceExertedByX(Body[] bs) {
+    public double calcNetForceExertedByX(Planet[] bs) {
         double FxNet = 0;
-        for (Body b : bs) {
+        for (Planet b : bs) {
             if (!this.equals(b)) {
                 FxNet += this.calcForceExertedByX(b);
             }
@@ -96,9 +96,9 @@ public class Body {
         return FxNet;
     }
 
-    public double calcNetForceExertedByY(Body[] bs) {
+    public double calcNetForceExertedByY(Planet[] bs) {
         double FyNet = 0;
-        for (Body b : bs) {
+        for (Planet b : bs) {
             if (!this.equals(b)) {
                 FyNet += this.calcForceExertedByY(b);
             }
@@ -107,7 +107,7 @@ public class Body {
     }
 
     /** 
-     * Update the velocity and position of the Body under the effect of force 
+     * Update the velocity and position of the Planet under the effect of force 
      */
     public void update(double dt, double fX, double fY) {
         double ax = fX / this.mass;
@@ -119,7 +119,7 @@ public class Body {
     }
     
     /** 
-     * Draw the picture of the Body according to its position
+     * Draw the picture of the Planet according to its position
      */
     public void draw() {
         StdDraw.picture(this.xxPos, this.yyPos, "images/" + this.imgFileName);
