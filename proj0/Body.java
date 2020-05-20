@@ -72,16 +72,5 @@ public class Body {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Body samh = new Body(1,0,0,0,10,"Samh");
-		Body aegir = new Body(3,3,0,0,5,"Aegir");
-		Body rocinante = new Body(5,-3,0,0,50,"Rocinante");
-		Body[] allBodys = {samh, rocinante, aegir};
-
-		/*
-		System.out.println(samh.calcForceExertedBy(rocinante));
-		System.out.println(samh.calcForceExertedByX(rocinante));*/
-		System.out.println(samh.calcForceExertedByX(rocinante)+samh.calcForceExertedByX(aegir));
-		System.out.println(samh.calcNetForceExertedByX(allBodys));
-		System.out.println(samh.calcNetForceExertedByY(allBodys));
 	}
 }

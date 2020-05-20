@@ -17,7 +17,7 @@ public class NBody {
 			double yyVel = in.readDouble();
 			double mass = in.readDouble();
 			String imgFileName = in.readString();
-			imgFileName = "./images/" + imgFileName;
+			//imgFileName = "./images/" + imgFileName;
 			Body b = new Body(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);			
 			bodies[i] = b;
 		}
@@ -33,7 +33,7 @@ public class NBody {
 
 		String imageToDraw = "./images/starfield.jpg";
 		StdDraw.enableDoubleBuffering();
-		StdDraw.setScale(-radius*10,radius*10);
+		StdDraw.setScale(-radius,radius);
 		StdDraw.clear();
 		StdDraw.picture(0, 0, imageToDraw);
 		Body[] bodies = readBodies(filename);
@@ -60,9 +60,16 @@ public class NBody {
 				bodies[i].draw();
 			StdDraw.show();
 			StdDraw.pause(10);
-			time++;
-			dt++;
+			time+= dt;
 		}
-	}
+		StdOut.printf("%d\n", bodies.length);
+		StdOut.printf("%.2e\n", radius);
+		for (int i = 0; i < bodies.length; i++) {
+		    StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+		                  bodies[i].xxPos, bodies[i].yyPos, bodies[i].xxVel,
+		                  bodies[i].yyVel, bodies[i].mass, bodies[i].imgFileName);   
+		}
+		
 
+	}
 }
