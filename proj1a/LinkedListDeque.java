@@ -2,7 +2,7 @@ public class LinkedListDeque<T> {
     private Node sentinel;
     private  int size;
 
-    public class Node {
+    private class Node {
         private  T item;
         private  Node prev;
         private  Node next;
@@ -49,7 +49,7 @@ public class LinkedListDeque<T> {
     public void printDeque() {
         Node p = sentinel.next;
         while (p != sentinel) {
-            System.out.print((String) p.item + " ");
+            System.out.print( p.item + " ");
             p = p.next;
         }
         System.out.print("\n");
@@ -59,6 +59,7 @@ public class LinkedListDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        size--;
         T t = sentinel.next.item;
         sentinel.next.next.prev = sentinel;
         sentinel.next =  sentinel.next.next;
@@ -69,6 +70,7 @@ public class LinkedListDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        size--;
         T t = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
@@ -88,7 +90,6 @@ public class LinkedListDeque<T> {
     }
 
     private T getRecursive(int index, Node curr) {
-
         if (index == 0) {
             return curr.item;
         }
@@ -99,7 +100,4 @@ public class LinkedListDeque<T> {
         return getRecursive(index, sentinel.next);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
