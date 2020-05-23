@@ -83,6 +83,7 @@ public class LinkedListDeque<T> {
         for (int i = 0; i < index; i++) {
             p = p.next;
         }
+        
         return p.item;
     }
 
