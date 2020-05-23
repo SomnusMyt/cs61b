@@ -17,19 +17,19 @@ public class ArrayDeque<T> {
         nextFirst = other.nextFirst;
         nextLast = other.nextLast;
         int i = plusOne(nextFirst);
-        while ( i != nextLast) {
+        while (i != nextLast) {
             items[i] = (T) other.items[i];
             i = plusOne(i);
         }
 
     }
 
-    public int minusOne(int index) {
+    private int minusOne(int index) {
         return (index - 1 + items.length) % items.length;
 
     }
 
-    public int plusOne(int index) {
+    private int plusOne(int index) {
         return (index + 1) % items.length;
     }
 
@@ -85,12 +85,12 @@ public class ArrayDeque<T> {
         System.out.print("\n");
     }
 
-    /** Returns the item from the back of the list. */
-    public T getLast() {
-        return items[size - 1];
-    }
     /** Gets the ith item in the list (0 is the front). */
     public T get(int i) {
+        if (i > size) {
+            return null;
+        }
+        i = (plusOne(nextFirst) + i) % items.length;
         return items[i];
     }
 
@@ -123,7 +123,5 @@ public class ArrayDeque<T> {
         }
         return res;
     }
-    public static void main(String[] args) {
 
-    }
 }
