@@ -21,17 +21,6 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        sentinel = new Node(null, null, null);
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
-        size = other.size;
-
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
-
     public void addFirst(T item) {
         size++;
         Node t = new Node(sentinel, item, sentinel.next);
@@ -97,7 +86,7 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
     }
 }

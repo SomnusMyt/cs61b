@@ -10,7 +10,7 @@ public class ArrayDeque<T> {
         nextFirst = 4;
         nextLast = 5;
     }
-
+    /**
     public ArrayDeque(ArrayDeque other) {
         items = (T[]) new Object[other.items.length];
         size = 0;
@@ -23,7 +23,7 @@ public class ArrayDeque<T> {
         }
 
     }
-
+    */
     private int minusOne(int index) {
         return (index - 1 + items.length) % items.length;
 
@@ -103,7 +103,7 @@ public class ArrayDeque<T> {
         items[nextFirst] = null;
         size--;
         if (items.length >= 16 && size < items.length * 0.25) {
-            resize(size / 2);
+            resize(items.length / 2);
         }
         return res;
     }
@@ -119,10 +119,9 @@ public class ArrayDeque<T> {
         items[nextLast] = null;
         size--;
         if (items.length >= 16 && size < items.length * 0.25) {
-            resize(size / 2);
+            resize(items.length / 2);
         }
         return res;
     }
-    public static void main(String[] args){
-    }
+
 }
