@@ -80,7 +80,7 @@ public class ArrayDeque<T> {
         int i = nextFirst++;
         while (i != nextLast) {
             System.out.print((String) items[i] + " ");
-            i++;
+            i = plusOne(i);
         }
         System.out.print("\n");
     }
@@ -124,6 +124,5 @@ public class ArrayDeque<T> {
         return res;
     }
     public static void main(String[] args){
-
     }
 }
