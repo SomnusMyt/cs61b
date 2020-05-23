@@ -64,7 +64,7 @@ public class ArrayDeque<T> {
 
         items[nextLast] = x;
         size++;
-        nextLast = minusOne(nextLast);
+        nextLast = plusOne(nextLast);
     }
 
     public boolean isEmpty() {
@@ -123,5 +123,7 @@ public class ArrayDeque<T> {
         }
         return res;
     }
+    public static void main(String[] args){
 
+    }
 }

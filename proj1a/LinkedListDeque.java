@@ -97,4 +97,7 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 
+    public static void main(String[] args){
+
+    }
 }
