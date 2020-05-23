@@ -21,7 +21,6 @@ public class ArrayDeque<T> {
             items[i] = (T) other.items[i];
             i = plusOne(i);
         }
-
     }
     */
     private int minusOne(int index) {
