@@ -19,7 +19,7 @@ public class TestPalindrome {
     @Test
     public void testIsPalindrome() {
         CharacterComparator cc = new OffByN(5);
-        assertTrue(palindrome.isPalindrome("af",cc));
+        assertTrue(palindrome.isPalindrome("af", cc));
 
     }
 }
