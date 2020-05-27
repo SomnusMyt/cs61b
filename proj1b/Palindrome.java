@@ -8,43 +8,25 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        /*Deque<Character> l = wordToDeque(word);
-        boolean flag = true;
-        for (int i = 0; i < word.length() / 2; i++) {
-            int j = word.length() - 1 - i;
-            if (l.get(i) != l.get(j)) {
-                flag = false;
-                break;
-            }
-        }
-        return flag;*/
-        return isPalindrome(wordToDeque(word));
-    }
-    private boolean isPalindrome(Deque<Character> l) {
+        Deque<Character> l = wordToDeque(word);
         while (l.size() > 1) {
-            return l.removeFirst() == l.removeLast() && isPalindrome(l);
+            if (l.removeFirst() != l.removeLast()) {
+                return false;
+            }
         }
         return true;
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        /*Deque<Character> l = wordToDeque(word);
-        boolean flag = true;
-        for (int i = 0; i < word.length() / 2; i++) {
-            int j = word.length() - 1 - i;
-            if (!cc.equalChars(l.get(i), l.get(j))) {
-                flag = false;
-                break;
-            }
-        }
-        return flag;*/
-        return isPalindrome(wordToDeque(word), cc);
-    }
-
-    private boolean isPalindrome(Deque<Character> l, CharacterComparator cc) {
+        Deque<Character> l = wordToDeque(word);
         while (l.size() > 1) {
-            return cc.equalChars(l.removeFirst(), l.removeLast()) && isPalindrome(l, cc);
+            Character first = l.removeFirst();
+            Character last = l.removeLast();
+            if (!(cc.equalChars(first, last))) {
+                return false;
+            }
         }
         return true;
     }
+
 }
