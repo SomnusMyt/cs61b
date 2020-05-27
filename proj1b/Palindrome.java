@@ -8,16 +8,7 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        /*boolean flag = true;
-        for (int i = 0; i < word.length() / 2; i++) {
-            int j = word.length() - 1 - i;
-            if (word.charAt(i) != word.charAt(j)) {
-                flag = false;
-                break;
-            }
-        }
-        return flag;*/
-        Deque<Character> l = wordToDeque(word);
+        /*Deque<Character> l = wordToDeque(word);
         boolean flag = true;
         for (int i = 0; i < word.length() / 2; i++) {
             int j = word.length() - 1 - i;
@@ -26,20 +17,18 @@ public class Palindrome {
                 break;
             }
         }
-        return flag;
+        return flag;*/
+        return isPalindrome(wordToDeque(word));
+    }
+    public boolean isPalindrome(Deque<Character> l) {
+        while (l.size() > 1) {
+            return l.removeFirst() == l.removeLast() && isPalindrome(l);
+        }
+        return true;
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        /*boolean flag = true;
-        for (int i = 0; i < word.length() / 2; i++) {
-            int j = word.length() - 1 - i;
-            if (!cc.equalChars(word.charAt(i), word.charAt(j))) {
-                flag = false;
-                break;
-            }
-        }
-        return flag;*/
-        Deque<Character> l = wordToDeque(word);
+        /*Deque<Character> l = wordToDeque(word);
         boolean flag = true;
         for (int i = 0; i < word.length() / 2; i++) {
             int j = word.length() - 1 - i;
@@ -48,6 +37,14 @@ public class Palindrome {
                 break;
             }
         }
-        return flag;
+        return flag;*/
+        return isPalindrome(wordToDeque(word), cc);
+    }
+
+    public boolean isPalindrome(Deque<Character> l, CharacterComparator cc) {
+        while (l.size() > 1) {
+            return cc.equalChars(l.removeFirst(), l.removeLast()) && isPalindrome(l, cc);
+        }
+        return true;
     }
 }
