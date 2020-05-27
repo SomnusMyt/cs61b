@@ -8,17 +8,27 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        Deque<Character> l = wordToDeque(word);
+        /*Deque<Character> l = wordToDeque(word);
         while (l.size() > 1) {
             if (l.removeFirst() != l.removeLast()) {
                 return false;
             }
         }
-        return true;
+        return true;*/
+
+        boolean flag = true;
+        for (int i = 0; i < word.length() / 2; i++) {
+            int j = word.length() - 1 - i;
+            if (word.charAt(i) != word.charAt(j)) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        Deque<Character> l = wordToDeque(word);
+        /*Deque<Character> l = wordToDeque(word);
         while (l.size() > 1) {
             Character first = l.removeFirst();
             Character last = l.removeLast();
@@ -26,7 +36,16 @@ public class Palindrome {
                 return false;
             }
         }
-        return true;
+        return true;*/
+        boolean flag = true;
+        for (int i = 0; i < word.length() / 2; i++) {
+            int j = word.length() - 1 - i;
+            if (!cc.equalChars(word.charAt(i), word.charAt(j))) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
     }
 
 }
