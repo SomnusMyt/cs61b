@@ -53,7 +53,7 @@ public class TestArrayDequeGold {
         // removeLast
         actualList.clear();
         expectedList.clear();
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<5; i++) {
             actualList.add(input.removeLast());
             expectedList.add(expect.removeLast());
         }
@@ -61,7 +61,7 @@ public class TestArrayDequeGold {
         int expected = expect.size();
         assertEquals("size()",
                 expected, actual);
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<5; i++) {
             assertEquals("removeLast()",
                     expectedList.get(i), actualList.get(i));
         }
