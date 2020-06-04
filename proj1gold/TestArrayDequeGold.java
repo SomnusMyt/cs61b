@@ -9,64 +9,27 @@ public class TestArrayDequeGold {
         StudentArrayDeque<Integer> input = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> expect = new ArrayDequeSolution<>();
 
-        //addLast
-        for (int i = 0; i < 10; i++) {
-            int random = StdRandom.uniform(10);
-            input.addLast(random);
-            expect.addLast(random);
-        }
-        for (int i = 0; i < 10; i++) {
-            int actual = input.get(i);
-            int expected = expect.get(i);
-            assertEquals("Oh noooo!\nThis is bad:\n   Random number " + actual
-                            + " not equal to " + expected + "!",
-                    expected, actual);
-        }
+        int random = StdRandom.uniform(10);
+        input.addFirst(random);
+        expect.addFirst(random);
+        assertEquals("addFirst(" + random + ")", input.get(0), expect.get(0));
+        System.out.println("addFirst(" + random + ")");
 
-        //addFirst
-        for (int i = 0; i < 10; i++) {
-            int random = StdRandom.uniform(10);
-            input.addFirst(random);
-            expect.addFirst(random);
-        }
-        for (int i = 0; i < 10; i++) {
-            int actual = input.get(i);
-            int expected = expect.get(i);
-            assertEquals("Oh noooo!\nThis is bad:\n   Random number " + actual
-                            + " not equal to " + expected + "!",
-                    expected, actual);
-        }
+        random = StdRandom.uniform(10);
+        input.addLast(random);
+        expect.addLast(random);
+        assertEquals("addLast(" + random + ")", input.get(1), expect.get(1));
+        System.out.println("addLast(" + random + ")");
 
-        //removeFirst
-        List<Integer> actualList = new ArrayList<>();
-        List<Integer> expectedList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            actualList.add(input.removeFirst());
-            expectedList.add(expect.removeFirst());
-        }
-        for (int i = 0; i < 10; i++) {
-            assertEquals("Oh noooo!\nThis is bad in removeFirst():\n   Random number " + actualList.get(i)
-                            + " not equal to " +  expectedList.get(i) + "!",
-                    expectedList.get(i), actualList.get(i));
-        }
+        int actual = input.removeFirst();
+        int expected = expect.removeFirst();
+        assertEquals("removeFirst()", actual, expected);
+        System.out.println("removeFirst()");
 
-        actualList.clear();
-        expectedList.clear();
-        for (int i = 0; i < 10; i++) {
-            actualList.add(input.removeLast());
-            expectedList.add(expect.removeLast());
-        }
-        int actualSize = input.size();
-        int expectSize = expect.size();
-        assertEquals("Oh noooo!\nThis is bad in Size():\n   Random number " + actualSize
-                        + " not equal to " +  expectSize + "!",
-                expectSize, actualSize);
-        for (int i = 0; i < 10; i++) {
-            assertEquals("Oh noooo!\nThis is bad in removeLast():\n   Random number " + actualList.get(i)
-                            + " not equal to " +  expectedList.get(i) + "!",
-                    expectedList.get(i), actualList.get(i));
-        }
-
-
+        actual = input.removeLast();
+        expected = expect.removeLast();
+        assertEquals("removeLast()", actual, expected);
+        System.out.println("removeLast()");
     }
+
 }
