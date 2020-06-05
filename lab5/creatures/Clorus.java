@@ -37,9 +37,7 @@ public class Clorus extends Creature {
     @Override
     public void move() {
         energy -= 0.03;
-        if (energy < 0) {
-            energy = 0;
-        }
+
     }
 
     @Override
