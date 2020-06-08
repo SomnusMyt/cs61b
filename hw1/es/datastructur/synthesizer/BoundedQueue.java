@@ -16,4 +16,5 @@ public interface BoundedQueue<T> {
         return capacity() == fillCount();
     }        // is the buffer full (fillCount is same as capacity)?
 
+    Iterator<T> iterator();
 }
