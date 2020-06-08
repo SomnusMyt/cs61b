@@ -1,6 +1,5 @@
 package es.datastructur.synthesizer;
 
-import java.net.PortUnreachableException;
 import java.util.Iterator;
 
 
@@ -100,6 +99,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     @Override
     public boolean equals(Object oo) {
         if (oo == this) {
+            return true;
+        }
+        if (this.hashCode() == oo.hashCode()) {
             return true;
         }
         if (oo == null) {
