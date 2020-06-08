@@ -1,5 +1,6 @@
 package es.datastructur.synthesizer;
 
+import java.net.PortUnreachableException;
 import java.util.Iterator;
 
 
@@ -8,8 +9,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     private int first;
     /* Index for the next enqueue. */
     private int last;
-    /* Variable for the fillCount. */
-    private int fillCount;
     /* Array for storing the buffer data. */
     private final T[] rb;
 
@@ -17,30 +16,23 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * Create a new ArrayRingBuffer with the given capacity.
      */
     public ArrayRingBuffer(int capacity) {
-
         first = 0;
         last = 0;
         fillCount = 0;
         rb = (T[]) new Object[capacity];
     }
 
+
     @Override
     public int capacity() {
         return rb.length;
     }
-
-    @Override
-    public int fillCount() {
-        return fillCount;
-    }
-
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow").
      */
     @Override
     public void enqueue(T x) {
-
         if (isFull()) {
             throw new RuntimeException("Ring Buffer overflow");
         }
@@ -71,7 +63,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      */
     @Override
     public T peek() {
-
         if (isEmpty()) {
             throw new RuntimeException("Ring Buffer underflow");
         }
