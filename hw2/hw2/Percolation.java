@@ -8,6 +8,7 @@ public class Percolation {
     private int bottom;
     private int size;
     private WeightedQuickUnionUF uf;
+    private WeightedQuickUnionUF ufExcludeBottom;
     private int numOfOpenSites = 0;
     private int[][] dirs = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     // create N-by-N grid, with all sites initially blocked
@@ -20,7 +21,7 @@ public class Percolation {
         top = 0;
         bottom = N * N + 1;
         uf = new WeightedQuickUnionUF(N * N + 2);
-
+        ufExcludeBottom = new WeightedQuickUnionUF(N * N + 1);
     }
     private int xyTo1D(int row, int col) {
         return row * size + col + 1;
@@ -41,6 +42,7 @@ public class Percolation {
         }
         if (row == 0) {
             uf.union(xyTo1D(row, col), top);
+            ufExcludeBottom.union(xyTo1D(row, col), top);
         }
         if (row == size - 1) {
             uf.union(xyTo1D(row, col), bottom);
@@ -53,6 +55,7 @@ public class Percolation {
             }
             if (isOpen(temprow, tempcol)) {
                 uf.union(xyTo1D(row, col), xyTo1D(temprow, tempcol));
+                ufExcludeBottom.union(xyTo1D(row, col), xyTo1D(temprow, tempcol));
             }
         }
     }
@@ -64,7 +67,7 @@ public class Percolation {
     }
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        return uf.connected(xyTo1D(row, col), top);
+        return ufExcludeBottom.connected(xyTo1D(row, col), top);
     }
     // number of open sites
     public int numberOfOpenSites() {
