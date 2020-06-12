@@ -13,16 +13,19 @@ public class PercolationStats {
         }
         fractions = new double[T];
         numberOfExperiments = T;
+        int totalSites = N * N;
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
+            int numOpenedSites = 0;
             while (!p.percolates()) {
                 int row = StdRandom.uniform(T);
                 int col = StdRandom.uniform(T);
                 if (!p.isOpen(row, col)) {
                     p.open(row, col);
+                    numOpenedSites += 1;
                 }
             }
-            fractions[i] = (double) p.numberOfOpenSites() / (N * N);
+            fractions[i] = (double) numOpenedSites / totalSites;
         }
     }
     // sample mean of percolation threshold
@@ -35,11 +38,15 @@ public class PercolationStats {
     }
     // low endpoint of 95% confidence interval
     public double confidenceLow() {
-        return mean() - ( 1.96 * stddev() / Math.sqrt(numberOfExperiments));
+        double mu = mean();
+        double sigma = stddev();
+        return mu - (1.96 * sigma / Math.sqrt(numberOfExperiments));
     }
     // high endpoint of 95% confidence interval
     public double confidenceHigh() {
-        return mean() + ( 1.96 * stddev() / Math.sqrt(numberOfExperiments));
+        double mu = mean();
+        double sigma = stddev();
+        return mu + (1.96 * sigma / Math.sqrt(numberOfExperiments));
     }
 
 }
